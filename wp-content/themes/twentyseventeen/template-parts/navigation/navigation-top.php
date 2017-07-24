@@ -7,6 +7,7 @@
  * @since 1.0
  * @version 1.2
  */
+require_once(get_parent_theme_file_path('/template-parts/navigation/MdNavBar_Walker.php'));
 
 ?>
 <nav id="site-navigation" class="main-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Top Menu', 'twentyseventeen' ); ?>">
@@ -21,6 +22,10 @@
 	<?php wp_nav_menu( array(
 		'theme_location' => 'top',
 		'menu_id'        => 'top-menu',
+		'items_wrap' => '<md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links" id="%1$s" class="%2$s">%3$s</md-nav-bar>',
+		'class' => 'md-padding',
+		'walker' => new MdNavBar_Walker(),
+		'container' => 'md-content'
 	) ); ?>
 
 	<?php if ( ( twentyseventeen_is_frontpage() || ( is_home() && is_front_page() ) ) && has_custom_header() ) : ?>

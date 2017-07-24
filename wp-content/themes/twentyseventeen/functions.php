@@ -451,6 +451,16 @@ function twentyseventeen_scripts() {
 
 	wp_enqueue_script( 'jquery-scrollto', get_theme_file_uri( '/assets/js/jquery.scrollTo.js' ), array( 'jquery' ), '2.1.2', true );
 
+	wp_enqueue_script('angular', get_theme_file_uri('/assets/js/angular-1.6.5/angular.min.js'), array(), '1.6.5', true);
+
+	wp_enqueue_script('angular-animate', get_theme_file_uri('/assets/js/angular-1.6.5/angular-animate.min.js'), array(), '1.6.5', true);
+
+	wp_enqueue_script('angular-aria', get_theme_file_uri('/assets/js/angular-1.6.5/angular-aria.min.js'), array(), '1.6.5', true);
+
+	wp_enqueue_script('angular-messages', get_theme_file_uri('/assets/js/angular-1.6.5/angular-messages.min.js'), array(), '1.6.5', true);
+
+	wp_enqueue_script('angular-material', get_theme_file_uri('/assets/js/angular-material/angular-material.js'), array(), '1.1.4', true);
+
 	wp_localize_script( 'twentyseventeen-skip-link-focus-fix', 'twentyseventeenScreenReaderText', $twentyseventeen_l10n );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {

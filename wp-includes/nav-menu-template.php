@@ -149,7 +149,7 @@ function wp_nav_menu( $args = array() ) {
 		 * @param array $tags The acceptable HTML tags for use as menu containers.
 		 *                    Default is array containing 'div' and 'nav'.
 		 */
-		$allowed_tags = apply_filters( 'wp_nav_menu_container_allowedtags', array( 'div', 'nav' ) );
+		$allowed_tags = apply_filters( 'wp_nav_menu_container_allowedtags', array( 'div', 'nav', 'md-content' ) );
 		if ( is_string( $args->container ) && in_array( $args->container, $allowed_tags ) ) {
 			$show_container = true;
 			$class = $args->container_class ? ' class="' . esc_attr( $args->container_class ) . '"' : ' class="menu-'. $menu->slug .'-container"';
