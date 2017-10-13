@@ -26,30 +26,6 @@
 		<div class="header-nav">
 			<div class="container">
 				<div class="row">
-					<!-- #logo section-->
-					<div id="logo" class="col-md-4 col-sm-4 col-xs-9">
-						<div id="site-title">
-							<?php 
-							if ( function_exists( 'the_custom_logo' ) ) {
-								the_custom_logo();
-							} 
-							?>
-							<?php 
-							if(!has_custom_logo()){
-							?>
-							<!-- #site-description -->
-							<div class="site-title">
-								<a href="<?php echo esc_url(home_url('/')); ?>"></a>
-								<?php 
-								$description = get_bloginfo( 'description', 'display' );
-								if ( $description || is_customize_preview() ) : ?>
-									<div id="site-description" class="site-description"><?php echo $description; ?></div>
-								<?php endif; ?>
-							</div>
-							<?php } ?>
-						</div>
-					</div>
-					<!-- #logo -->
 					
 					<!-- #main-navigation-->
 					<?php 
@@ -100,21 +76,6 @@
 											<h5><?php echo esc_attr( $userbio ); ?></h5>								
 										</div>
 									<?php } ?>
-									
-									<!--Social Icons-->
-									<div class="social-icons">
-										<ul>
-											<?php if(isset($fbicon) && $fbicon !=""){ ?><li><a class="icon-item" target="_blank" href="<?php echo esc_url($fbicon); ?>"><i class="fa fa-facebook"></i></a></li><?php } ?>
-											<?php if(isset($twicon) && $twicon !=""){ ?><li><a class="icon-item" target="_blank" href="<?php echo esc_url($twicon); ?>"><i class="fa fa-twitter"></i></a></li><?php } ?>
-											<?php if(isset($gpicon) && $gpicon !=""){ ?><li><a class="icon-item" target="_blank" href="<?php echo esc_url($gpicon); ?>"><i class="fa fa-google-plus"></i></a></li><?php } ?>
-											<?php if(isset($dribicon) && $dribicon !=""){ ?><li><a class="icon-item" target="_blank" href="<?php echo esc_url($dribicon); ?>"><i class="fa fa-dribbble"></i></a></li><?php } ?>
-											<?php if(isset($linkdicon) && $linkdicon !=""){ ?><li><a class="icon-item" target="_blank" href="<?php echo esc_url($linkdicon); ?>"><i class="fa fa-linkedin"></i></a></li><?php } ?>
-											<?php if(isset($piniticon) && $piniticon !=""){ ?><li><a class="icon-item" target="_blank" href="<?php echo esc_url($piniticon); ?>"><i class="fa fa-pinterest"></i></a></li><?php } ?>
-											<?php if(isset($flickricon) && $flickricon !=""){ ?><li><a class="icon-item" target="_blank" href="<?php echo esc_url($flickricon); ?>"><i class="fa fa-flickr"></i></a></li><?php } ?>
-											<?php if(isset($instaicon) && $instaicon !=""){ ?><li><a class="icon-item" target="_blank" href="<?php echo esc_url($instaicon); ?>"><i class="fa fa-instagram"></i></a></li><?php } ?>
-											<?php if(isset($yticon) && $yticon !=""){ ?><li><a class="icon-item" target="_blank" href="<?php echo esc_url($yticon); ?>"><i class="fa fa-youtube"></i></a></li><?php } ?>										
-										</ul>
-									</div><!-- .social-icons ends -->
 								</div><!-- .author-detail -->							
 							</div><!-- .author-desc-box ends -->
 						<?php } ?>

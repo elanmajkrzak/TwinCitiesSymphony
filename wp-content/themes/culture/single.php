@@ -16,7 +16,7 @@ get_header(); ?>
 	<div class="container">
 		<div class="row">
 			<!-- .single-post-content starts-->
-			<div id="content" class="col-md-9 col-sm-8 col-xs-12 single-post-content">
+			<div id="content" class="col-12 single-post-content">
 				<!-- .inner-content-->
 				<div class="inner-content">
 					<?php
@@ -29,8 +29,7 @@ get_header(); ?>
 					?>
 	
 				</div><!-- .inner-content-->
-			</div><!-- #content -->				
-			<?php get_sidebar( 'blog' ); ?>				
+			</div><!-- #content -->
 		</div><!-- .row -->
 	</div><!-- .container -->
 </div><!-- #container -->

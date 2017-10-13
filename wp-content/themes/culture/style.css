@@ -733,7 +733,7 @@ a img.aligncenter {
 }
 
 #header .header-nav{
-	padding:30px 0;
+	padding:10px 0;
 }
 
 #header .header-nav{
@@ -1180,7 +1180,7 @@ a img.aligncenter {
 }
 
 #container{
-	padding: 75px 0;
+	padding: 25px 0;
     position: relative;
 }
 
@@ -1245,6 +1245,18 @@ h1.post-title a{
 
 #content .inner-content{
     padding: 0;
+}
+
+#content .inner-content #logo {
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	display: inline;
+}
+
+#content .inner-content #logo #tc-symphony-logo {
+	max-width: 100%;
+	height: auto;
 }
 
 #content .inner-content .form-submit .submit{
