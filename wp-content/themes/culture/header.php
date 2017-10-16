@@ -30,7 +30,11 @@
 					<!-- #main-navigation-->
 					<?php 
 					if( function_exists( 'has_nav_menu' ) && has_nav_menu( 'Header' ) ){
-						wp_nav_menu(array( 'container_class' => 'main-navigation col-md-8 col-sm-8 col-xs-3', 'container_id' => 'main-navigation', 'menu_id' => 'main-nav','menu_class' => 'menu clearfix','theme_location' => 'Header' )); 
+						wp_nav_menu(array( 'container_class' => 'main-navigation col-md-8 col-sm-8 col-xs-3',
+                                           'container_id' => 'main-navigation',
+                                           'menu_id' => 'main-nav',
+                                           'menu_class' => 'menu clearfix',
+                                           'theme_location' => 'Header' ));
 					}
 					else{
 					?>

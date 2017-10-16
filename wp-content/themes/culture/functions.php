@@ -76,4 +76,42 @@ add_action( 'after_setup_theme', 'culture_theme_config' );
 
 #-----------------------------------------------------------------#
 # FROM HERE YOU CAN ADD YOUR OWN FUNCTIONS
-#-----------------------------------------------------------------# 
+#-----------------------------------------------------------------#
+function create_header_menu() {
+	$menu_name = 'Navigation';
+	$menu_exists = wp_get_nav_menu_object( $menu_name );
+
+	if (!$menu_exists) {
+		$menu_id = wp_create_nav_menu($menu_name);
+		$menu = get_term_by( 'name', $menu_name, 'nav_menu' );
+
+		wp_update_nav_menu_item($menu_id, 0, array(
+			'menu-item-title' =>  __('Home'),
+			'menu-item-classes' => 'home',
+			'menu-item-url' => home_url( '/' ),
+			'menu-item-status' => 'publish'
+		));
+
+		wp_update_nav_menu_item($menu_id, 0, array(
+			'menu-item-title' =>  __('Concerts & Events'),
+			'menu-item-url' => home_url( '/concerts/' ),
+			'menu-item-status' => 'publish'
+		));
+
+		wp_update_nav_menu_item($menu_id, 0, array(
+			'menu-item-title' =>  __('Donate'),
+			'menu-item-status' => 'publish'
+		));
+
+		wp_update_nav_menu_item($menu_id, 0, array(
+			'menu-item-title' =>  __('Auditions'),
+			'menu-item-url' => home_url( '/audition/' ),
+			'menu-item-status' => 'publish'
+		));
+
+		$locations = get_theme_mod('nav_menu_locations');
+		$locations['Header'] = $menu->term_id;
+		set_theme_mod( 'nav_menu_locations', $locations );
+	}
+}
+add_action( 'load-nav-menus.php', 'create_header_menu' );
