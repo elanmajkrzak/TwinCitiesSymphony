@@ -71,6 +71,23 @@ function culture_theme_config() {
 	register_nav_menus( array(
 		'Header' => __( 'Main Navigation', 'culture' ),
 	));
+
+	wp_insert_term(
+		'Mission Statement',
+		'category',
+		array(
+			'description'	=> 'This category will display on the front page, directly beneath the logo and before recent posts.',
+			'slug' 		=> 'mission-statement'
+		)
+	);
+	wp_insert_term(
+		'Concerts & Events',
+		'category',
+		array(
+			'description'	=> 'This a category for posts that are concerts or events',
+			'slug' 		=> 'concerts-and-events'
+		)
+	);
 }
 add_action( 'after_setup_theme', 'culture_theme_config' ); 
 
@@ -78,7 +95,7 @@ add_action( 'after_setup_theme', 'culture_theme_config' );
 # FROM HERE YOU CAN ADD YOUR OWN FUNCTIONS
 #-----------------------------------------------------------------#
 function create_header_menu() {
-	$menu_name = 'Navigation';
+	$menu_name = 'Main Navigation';
 	$menu_exists = wp_get_nav_menu_object( $menu_name );
 
 	if (!$menu_exists) {
@@ -94,7 +111,7 @@ function create_header_menu() {
 
 		wp_update_nav_menu_item($menu_id, 0, array(
 			'menu-item-title' =>  __('Concerts & Events'),
-			'menu-item-url' => home_url( '/concerts/' ),
+			'menu-item-url' => get_category_link( get_cat_ID('Concerts & Events')),
 			'menu-item-status' => 'publish'
 		));
 
@@ -115,3 +132,62 @@ function create_header_menu() {
 	}
 }
 add_action( 'load-nav-menus.php', 'create_header_menu' );
+
+function exclude_mission_statement_from_loop($query){
+	if ($query->is_home() && $query->is_main_query() && ! is_admin()) {
+		$query->set('cat', '-' . get_cat_ID('Mission Statement'));
+	}
+}
+add_action('pre_get_posts','exclude_mission_statement_from_loop');
+
+function add_event_date_metabox() {
+	add_meta_box(
+		'event_date_metabox',
+		__( 'Event Date', 'tcs'),
+		'event_date_metabox_callback',
+		'post',
+		'side',
+		'high'
+	);
+}
+add_action( 'add_meta_boxes', 'add_event_date_metabox' );
+
+function event_date_metabox_callback($post) {
+	wp_nonce_field( 'event_date_metabox_nonce', 'nonce' );
+	?>
+	<form action="" method="post">
+
+		<?php
+		$event_date = get_post_meta( $post->ID, 'expires', true );
+		?>
+
+		<label for "$event_date"><?php __( 'Event Date', 'tcs'); ?></label>
+		<input type="date" class="event-date" name="event_date" value=<?php echo esc_attr( $event_date ); ?> />
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+                jQuery('.event-date').datepicker({
+                    dateFormat : 'dd-mm-yy'
+                });
+            });
+        </script>
+    </form>
+	<?php
+}
+
+function save_event_date_meta( $post_id ) {
+	if( !isset( $_POST['nonce'] ) || !wp_verify_nonce( $_POST['nonce'], 'event_date_metabox_nonce')) {
+		return;
+	}
+	if (current_user_can('edit_post', $post_id ) && isset( $_POST['event_date'] )) {
+		$new_event_date = ( $_POST['event_date'] );
+		update_post_meta( $post_id, 'expires', $new_event_date );
+	}
+
+}
+add_action( 'save_post', 'save_event_date_meta' );
+
+function load_admin_scripts() {
+	wp_enqueue_script( 'jquery-ui-datepicker' );
+	wp_enqueue_style( 'jquery-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css' );
+}
+add_action( 'admin_enqueue_scripts', 'load_admin_scripts' );

@@ -20,17 +20,12 @@ get_header(); ?>
 					<div class="entry-listing">
 						<?php 
 							// Start the Loop.
+                            $index = 0;
 							if(have_posts()) : 
-							while(have_posts()) : the_post();
-							get_template_part( 'template-parts/content', get_post_format() );
-							endwhile; 						
- 
-							// Previous/next page navigation.
-							the_posts_pagination( array(
-								'prev_text'          => __( '<i class="fa fa-angle-left" aria-hidden="true"></i> Previous page', 'culture' ),
-								'next_text'          => __( 'Next page <i class="fa fa-angle-right" aria-hidden="true"></i>', 'culture' ),
-								'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'culture' ) . ' </span>',
-							));
+							while(have_posts() && $index < 3) : the_post();
+							get_template_part( 'template-parts/content', 'preview' );
+							$index++;
+							endwhile;
 						?>
 						<?php else : 
 						// Include the page content template.

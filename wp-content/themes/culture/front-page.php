@@ -4,6 +4,7 @@
  * User: Elan Majkrzak
  * Date: 10/12/2017
  * Time: 5:46 PM
+ * @TODO add sponsors post type and listing on front page
  */
 $logo_dir = '/images/tc_symphony_logo.svg';
 
@@ -14,7 +15,6 @@ get_header(); ?>
 		<div class="row">
 			<div id="content" class="col-12 archive-wrap">
 				<div class="inner-content">
-
 					<!-- #logo section-->
 					<div id="logo">
                         <?php
@@ -23,28 +23,22 @@ get_header(); ?>
                             echo $logo;
                         ?>
 					</div>
-					<!-- #logo -->
-					<div class="entry-listing">
-						<?php
-						// Start the Loop.
-						if(have_posts()) :
-							while(have_posts()) : the_post();
-								get_template_part( 'template-parts/content', get_post_format() );
-							endwhile;
+                    <?php
+                        $mission_statement = new WP_Query( array( 'category_name' => 'mission-statement' ) );
+                        if ($mission_statement->have_posts()) {
+	                        $mission_statement->the_post();
 
-							// Previous/next page navigation.
-							the_posts_pagination( array(
-								'prev_text'          => __( '<i class="fa fa-angle-left" aria-hidden="true"></i> Previous page', 'culture' ),
-								'next_text'          => __( 'Next page <i class="fa fa-angle-right" aria-hidden="true"></i>', 'culture' ),
-								'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'culture' ) . ' </span>',
-							));
-							?>
-						<?php else :
-							// Include the page content template.
-							get_template_part( 'template-parts/content', 'none' ); ?>
-						<?php endif; ?>
+	                        echo '<h1 class="post-title" id="mission-statement">' . get_the_content() . '</h1>';
 
-					</div><!-- .entry-listing-->
+	                        wp_reset_postdata();
+                        }
+
+                        if ( 'posts' == get_option( 'show_on_front' ) ) {
+                            include(get_home_template());
+                        } else {
+	                        include(get_page_template());
+                        }
+                    ?>
 				</div><!-- .inner-content-->
 			</div><!-- #content -->
 		</div><!-- .row -->

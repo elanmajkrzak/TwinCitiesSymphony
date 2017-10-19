@@ -115,6 +115,22 @@ function culture_customize_register( $wp_customize )
 			'section'     => 'culture_footer_section',
 		)
 	);
+	// Contact Info
+	$wp_customize->add_setting(
+		'footer_contactinfo',
+		array(
+			'default'        => '',
+			'sanitize_callback' => 'culture_sanitize_textarea',
+		)
+	);
+	$wp_customize->add_control(
+		'footer_contactinfo',
+		array(
+			'label'       => __('Contact Info','culture'),
+			'type'        => 'textarea',
+			'section'     => 'culture_footer_section',
+		)
+	);
 	// Facebook Icon URL 
 	$wp_customize->add_setting( 
 		'footer_fbicon', 

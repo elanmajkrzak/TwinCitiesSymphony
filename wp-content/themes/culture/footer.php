@@ -16,6 +16,8 @@ $footer_piniticon  = get_theme_mod('footer_piniticon');
 $footer_flickricon = get_theme_mod('footer_flickricon');
 $footer_instaicon  = get_theme_mod('footer_instaicon');
 $footer_yticon     = get_theme_mod('footer_yticon');
+
+$footer_contact = get_theme_mod('footer_contactinfo');
 ?>
 
 <!-- #footer Section Starts -->
@@ -24,15 +26,14 @@ $footer_yticon     = get_theme_mod('footer_yticon');
 	<!-- .footer-siteinfo Section Starts-->
 	<div class="footer-siteinfo">
 		<div class="container">
-		
-			<div class="row">
-				<!-- copyright content -->
-				<div class="col-md-12 col-sm-12 col-xs-12 copyright_txt">
-					<?php if(!empty($culture_copyright)){ echo wp_kses_post( $culture_copyright ); }?>
-					<a href="<?php echo esc_url( __( 'https://desirepress.com', 'culture' ) ); ?>"><?php printf( __( 'Culture by %s', 'culture' ), 'DesirePress' ); ?></a>
-				</div>
-			</div><!-- .row -->
-			
+            <div class="row">
+                <!-- copyright content -->
+                <div class="col-md-12 col-sm-12 col-xs-12 copyright_txt">
+					<?php if(!empty($footer_contact)){
+					    echo wp_kses_post( $footer_contact);
+					}?>
+                </div>
+            </div><!-- .row -->
 			<div class="row">
 				<!-- .footer-social-icons Starts -->
 				<div class="col-md-12 col-sm-12 col-xs-12 footer-social-icons">
@@ -49,7 +50,15 @@ $footer_yticon     = get_theme_mod('footer_yticon');
 					</ul>
 				</div><!-- .footer-social-icons Ends -->
 			</div><!-- .row -->
-		</div><!-- .container -->
+            <div class="row">
+                <!-- copyright content -->
+                <div class="col-md-12 col-sm-12 col-xs-12 copyright_txt">
+					<?php if(!empty($culture_copyright)){ echo wp_kses_post( $culture_copyright ); }?>
+                    <a href="<?php echo esc_url( __( 'https://desirepress.com', 'culture' ) ); ?>"><?php printf( __( 'Culture by %s', 'culture' ), 'DesirePress' ); ?></a>
+                </div>
+            </div><!-- .row -->
+
+        </div><!-- .container -->
 	</div><!-- .footer-siteinfo Ends -->
 </footer>
 <!-- #Footer Section Ends -->
