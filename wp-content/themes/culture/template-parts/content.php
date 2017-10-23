@@ -33,10 +33,14 @@
 		//} 
 		?>
 		
-		<?php if ( 'post' === get_post_type() ){ ?>
+		<?php if ( 'post' === get_post_type() ){
+			$event_date = get_post_meta(get_the_ID(), 'event_date', true ); ?>
 			<div class="col-md-3 col-sm-12 col-xs-12 date-auth-wrap">
-				<h5 class="date"><?php the_time( get_option( 'date_format' ) ); ?></h5>
-				<h4 class="author-name"><?php the_author_posts_link(); ?> </h4>					
+				<h5 class="date"><?php if($event_date && in_category('concerts-and-events')){
+						echo date('l F jS Y', strtotime($event_date));
+                    } else {
+				        echo 'Posted on ' . get_the_date(get_option('date_format'));
+					}?></h5>
 			</div>
 		<?php 
 		} 
@@ -79,16 +83,7 @@
 					__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'culture' ),
 					get_the_title()
 				) );
-			} 
-
-			wp_link_pages( array(
-				'before'      => '<div class="page-links">' . __( 'Pages:', 'culture' ),
-				'after'       => '</div>',
-				'link_before' => '<span class="page-number">',
-				'link_after'  => '</span>',
-			) );
-	
-			culture_entry_footer(); // post footer entry
+			}
 		?>
 	</div><!-- .entry-content -->
 
