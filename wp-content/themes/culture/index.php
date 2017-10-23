@@ -10,7 +10,7 @@
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
  */
-get_header(); ?>
+?>
 
 <div id="container">
 	<div class="container">
@@ -21,6 +21,8 @@ get_header(); ?>
 						<?php 
 							// Start the Loop.
                             $index = 0;
+						    query_posts('cat=-' . get_cat_ID('Sponsors') . ',-' . get_cat_ID('Mission Statement'));
+
 							if(have_posts()) : 
 							while(have_posts() && $index < 3) : the_post();
 							get_template_part( 'template-parts/content', 'preview' );
@@ -36,7 +38,49 @@ get_header(); ?>
 				</div><!-- .inner-content-->
 			</div><!-- #content -->
 		</div><!-- .row -->
+        <div class="row">
+            <div id="container">
+                <div class="container">
+                    <h1 class="tcs-title">Sponsors</h1>
+			        <?php
+			        // Start the Loop.
+			        $index = 0;
+			        query_posts('cat=' . get_cat_ID('Sponsors'));
+			        if(have_posts()) :
+				        while(have_posts()) : the_post();
+					        if ($index % 3 == 0 || $index == 0) :
+						        ?>
+
+                                <div class="row">
+                                    <div id="content" class="col-12 archive-wrap">
+                                        <div class="inner-content">
+                                            <div class="entry-listing">
+					        <?php endif;
+					        get_template_part( 'template-parts/content', 'sponsor' );
+					        $index++;
+					        if ($index % 3 == 0 || $wp_query->current_post + 1 == $wp_query->post_count) :
+						        ?>
+                                            </div><!-- .entry-listing-->
+                                        </div><!-- .inner-content-->
+                                    </div><!-- #content -->
+                                </div><!-- .row -->
+						        <?php
+					        endif;
+				        endwhile;
+			        else :
+				        ?>
+                        <div class="row">
+                            <div id="content" class="col-12 archive-wrap">
+                                <div class="inner-content">
+                                    <div class="entry-listing">
+								        <?php get_template_part( 'template-parts/content', 'none' ); ?>
+                                    </div><!-- .entry-listing-->
+                                </div><!-- .inner-content-->
+                            </div><!-- #content -->
+                        </div><!-- .row -->
+			        <?php endif; ?>
+                </div><!-- .container -->
+            </div><!-- #container -->
+        </div>
 	</div><!-- .container -->
 </div><!-- #container -->
-
-<?php get_footer(); ?>

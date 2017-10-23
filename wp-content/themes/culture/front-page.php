@@ -4,7 +4,6 @@
  * User: Elan Majkrzak
  * Date: 10/12/2017
  * Time: 5:46 PM
- * @TODO add sponsors post type and listing on front page
  */
 $logo_dir = '/images/tc_symphony_logo.svg';
 
@@ -28,7 +27,11 @@ get_header(); ?>
                         if ($mission_statement->have_posts()) {
 	                        $mission_statement->the_post();
 
-	                        echo '<h1 class="post-title" id="mission-statement">' . get_the_content() . '</h1>';
+	                        if (get_the_content()) {
+		                        echo '<h3 class="post-title" id="mission-statement">' . get_the_content() . '</h3>';
+	                        } else {
+		                        echo '<h3 class="post-title" id="mission-statement">' . get_the_title() . '</h3>';
+                            }
 
 	                        wp_reset_postdata();
                         }

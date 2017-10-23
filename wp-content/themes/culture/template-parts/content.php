@@ -7,6 +7,7 @@
  * @subpackage Culture
  * @since 1.0
  * @version 1.0
+ * @TODO make content display properly
  */
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class('blog-content-box'); ?>>

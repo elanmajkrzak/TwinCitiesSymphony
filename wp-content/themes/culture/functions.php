@@ -88,6 +88,14 @@ function culture_theme_config() {
 			'slug' 		=> 'concerts-and-events'
 		)
 	);
+	wp_insert_term(
+		'Sponsors',
+		'category',
+		array(
+			'description'	=> 'Posts with this category will populate below other post previews on the front page',
+			'slug' 		=> 'sponsors'
+		)
+	);
 }
 add_action( 'after_setup_theme', 'culture_theme_config' ); 
 
@@ -158,7 +166,7 @@ function event_date_metabox_callback($post) {
 	<form action="" method="post">
 
 		<?php
-		$event_date = get_post_meta( $post->ID, 'expires', true );
+		$event_date = get_post_meta( $post->ID, 'event_date', true );
 		?>
 
 		<label for "$event_date"><?php __( 'Event Date', 'tcs'); ?></label>
@@ -180,7 +188,7 @@ function save_event_date_meta( $post_id ) {
 	}
 	if (current_user_can('edit_post', $post_id ) && isset( $_POST['event_date'] )) {
 		$new_event_date = ( $_POST['event_date'] );
-		update_post_meta( $post_id, 'expires', $new_event_date );
+		update_post_meta( $post_id, 'event_date', date('Y-m-d', strtotime($new_event_date)));
 	}
 
 }

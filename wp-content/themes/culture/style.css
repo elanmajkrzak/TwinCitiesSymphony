@@ -2086,3 +2086,8 @@ a.comment-edit-link:hover {
 	box-sizing: border-box;
 	padding:50px;
 }
+
+.tcs-title {
+	text-align: center;
+	padding: 50px;
+}

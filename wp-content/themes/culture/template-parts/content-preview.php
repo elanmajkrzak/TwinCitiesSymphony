@@ -18,7 +18,14 @@
 					<a href="<?php the_permalink();?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
 				<?php } ?>
 			</h1>
-			<?php if(has_category()){ ?><span class="category"><?php the_category('&nbsp;,'); ?></span><?php } ?>
+            <?php
+            $event_date = get_post_meta(get_the_ID(), 'event_date', true );
+            if($event_date) {
+	            ?><span class="category"><?php echo date('l F jS Y', strtotime($event_date)) ?></span><?php
+            }
+            else if(has_category()){
+                ?><span class="category"><?php the_category('&nbsp;,'); ?></span><?php
+            } ?>
 		</div>
 	</header><!-- .entry-header -->
 
