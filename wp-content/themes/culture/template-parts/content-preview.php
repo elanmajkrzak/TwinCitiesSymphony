@@ -8,7 +8,7 @@
  */
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class('front-page-preview col-md-4 col-sm-12'); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class(($postClasses ? $postClasses : 'front-page-preview col-md-4 col-sm-12')); ?>>
 	<header class="entry-header clearfix">
 		<div class="col-12 ttl-cat-wrap">
 			<h1 class="entry-title">

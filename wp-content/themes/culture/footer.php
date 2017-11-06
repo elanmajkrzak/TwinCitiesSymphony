@@ -50,13 +50,6 @@ $footer_contact = get_theme_mod('footer_contactinfo');
 					</ul>
 				</div><!-- .footer-social-icons Ends -->
 			</div><!-- .row -->
-            <div class="row">
-                <!-- copyright content -->
-                <div class="col-md-12 col-sm-12 col-xs-12 copyright_txt">
-					<?php if(!empty($culture_copyright)){ echo wp_kses_post( $culture_copyright ); }?>
-                    <a href="<?php echo esc_url( __( 'https://desirepress.com', 'culture' ) ); ?>"><?php printf( __( 'Culture by %s', 'culture' ), 'DesirePress' ); ?></a>
-                </div>
-            </div><!-- .row -->
 
         </div><!-- .container -->
 	</div><!-- .footer-siteinfo Ends -->
